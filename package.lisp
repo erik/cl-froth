@@ -40,5 +40,5 @@
 
 (defpackage :cl-froth
   (:use :common-lisp :cl :cl-froth.core)
-  (:export :init))
+  (:export :main))
 

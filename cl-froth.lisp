@@ -4,7 +4,12 @@
   (format *query-io* "~a > " p)
   (force-output *query-io*))
 
-(defun init ()
+(defun main(argv)
+  (declare (ignore argv))
+
+  (when argv
+    (format t "ARGV => ~a~%" argv))
+
   (prompt "Type some words")
 
   (loop for word = (read-word)
