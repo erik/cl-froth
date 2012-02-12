@@ -4,12 +4,10 @@ some time ago. The point of it is for me to become acquainted with
 Common Lisp, so expect ugliness and bad practices ahead
 
 # building
-Uses ASDF and quicklisp.
+Building is currently done through the Makefile, which should be able
+to become fairly implementation agnostic eventually. However, as of
+right now, only SBCL and CLISP are supported, and even then, the CLISP
+version seems to have some issues.
 
-To build an executable using SBCL, run `make`. This requires buildapp
-to run. Without buildapp, you can try doing `(load "make")` or running
-`./make.lisp`. This is also currently SBCL only, but will eventually
-include some other Lisps as well.
+Run `make all` for SBCL, `make clisp` for CLISP
 
-# license
-I don't know, how about Microsoft Public License?
