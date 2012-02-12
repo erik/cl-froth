@@ -1,7 +1,7 @@
 (in-package :cl-froth.functions)
 
-(defmethod create-default-dictionary ((d dictionary)
-                                      s)
+(defun create-default-dictionary (d s)
+
   "Return a dictionary filled with the standard words."
 
   (add-word-dict d "dup"    (lambda () (push-stack s (peek-stack s))))
@@ -35,6 +35,8 @@
 
   (add-word-dict d ".\""    (lambda () (push-stack s (read-delim "\""))))
   (add-word-dict d ".("     (lambda () (push-stack s (read-delim ")"))))
+
+  (add-word-dict d "exit"   (lambda () (quit-application)))
 
   ;; TODO: finish functions
   )

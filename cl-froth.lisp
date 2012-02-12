@@ -14,9 +14,8 @@
   "Evaluates a file."
   (handler-case
       (with-open-file (file name)
-        (let (text (slurp-file file))
-          ;; evaluate the file here
-          ))
+        ;; evaluate the file here
+        (format t "Pretend I just evaluated this: ~a~%" (slurp-file file)))
     (error () (format t "Can't open file: ~a, skipping...~%" name))))
 
 (defun make-repl ()
@@ -33,17 +32,14 @@
               (format t "=> ~a~%" (peek-stack *stack*)))
           (error (e) (format t "~a~%" e)))))
 
-(defun main(argv)
-  (declare (ignore argv))
+(defun main()
 
   (create-default-dictionary *dictionary* *stack*)
 
+  (format t "ARGV => ~a~%" *argv*)
+
   ;; program name is given as first arg, so ignore that
-  (setf argv (rest argv))
+  ;; currently explodes on clisp, so sbcl only for now
+  #+sbcl (loop for file-name in (rest *argv*) do (do-file file-name))
 
-  (format t "ARGV => ~a~%" argv)
-
-  (if argv
-      (loop for file-name in argv
-         do (do-file file-name))
-      (make-repl)))
+  (make-repl))

@@ -18,9 +18,10 @@
     :serial t
 
     :components ((:file "package")
+                 (:file "core")
+                 (:file "wrappers")
                  (:file "stack")
                  (:file "dictionary")
                  (:file "functions")
-                 (:file "cl-froth")
-                 (:file "core")
-                 (:file "compile")))
+                 (:file "compile")
+                 (:file "cl-froth")))

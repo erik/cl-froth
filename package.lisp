@@ -1,11 +1,19 @@
-(defpackage :cl-froth.core
+(defpackage :cl-froth.wrappers
   (:use :common-lisp)
+  (:export
+   :quit-application
+   :get-args
+   :*argv*))
+
+(defpackage :cl-froth.core
+  (:use :common-lisp :cl-froth.wrappers)
   (:export
 
    ;; functions
    :read-word
    :read-string
    :read-definition
+   :read-delim
    :primitivep
 
    ;; vars
@@ -63,7 +71,8 @@
    :cl-froth.dictionary
    :cl-froth.stack
    :cl-froth.core
-   :cl-froth.compile)
+   :cl-froth.compile
+   :cl-froth.wrappers)
 
   (:export
    :create-default-dictionary))
@@ -74,6 +83,8 @@
         :cl-froth.compile
         :cl-froth.dictionary
         :cl-froth.stack
-        :cl-froth.functions)
-  (:export :main))
+        :cl-froth.functions
+        :cl-froth.wrappers)
+  (:export
+   :main))
 

@@ -22,6 +22,5 @@
       ;; push immediate values onto the stack
       (push-stack *stack* word)
 
-      (let ((fun (first word))
-            (imm (rest word)))
+      (let ((fun (first word)))
         (funcall fun))))

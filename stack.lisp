@@ -5,13 +5,13 @@
 
 (defvar *stack* (make-instance 'stack) "Global stack.")
 
-(defmethod push-stack ((st stack) value)
+(defun push-stack (st value)
   (setf (slot-value st 'stk) (append (slot-value st 'stk) (list value))))
 
-(defmethod print-stack ((st stack))
+(defun print-stack (st)
   (format nil "~{~a ~}" (slot-value st 'stk)))
 
-(defmethod pop-stack ((st stack))
+(defun pop-stack (st)
   ;; when list is empty
   (when (eq nil (slot-value st 'stk)) (error "Stack is empty"))
 
@@ -20,8 +20,8 @@
     (setf (slot-value st 'stk) (butlast s))
     l))
 
-(defmethod peek-stack ((st stack))
+(defun peek-stack (st)
   (first (last (slot-value st 'stk))))
 
-(defmethod clear-stack ((st stack))
+(defun clear-stack (st)
   (setf (slot-value st 'stk) '()))

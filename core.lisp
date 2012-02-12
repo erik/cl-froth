@@ -61,5 +61,6 @@
    'string '()
 
    (loop for char = (read-char *reader-source*)
-      while (lambda () (char-not-equal char delim))
+      while (and (characterp char)
+                 (lambda () (char-not-equal char delim)))
       collect char)))
