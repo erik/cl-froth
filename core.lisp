@@ -5,6 +5,10 @@
 (defvar *reader-source* *standard-input*
   "Input source for reader, defaulting to stdin.")
 
+(defun prompt (p)
+  (format *query-io* "~a " p)
+  (force-output *query-io*))
+
 (defun whitespacep (c)
   "Returns true if the Lisp character CHAR is whitespace"
   (member c '(#\Space #\Tab #\Newline) :test #'char=))
@@ -12,7 +16,7 @@
 (defun primitivep (type)
   "Returns true if the type given is a froth primitive value."
   (or (numberp type)
-      ;; TODO: probable some other primitives
+      ;; TODO: probably some other primitives
       ))
 
 (defun read-word- ()
@@ -20,7 +24,7 @@
 
   ;; skip any leading whitespace
   (loop for ws = (peek-char nil *reader-source*)
-     while (and (characterp ws) (whitespacep ws))
+     while (and (characterp ws) (whitespacep ws) (listen *reader-source*))
      do (read-char *reader-source*))
 
   (concatenate
@@ -31,8 +35,11 @@
                      (whitespacep char)))
       collect char)))
 
-(defun read-word ()
+(defun read-word (&optional interactive)
   "Reads next available word from the reader."
+
+  (when interactive
+    (prompt ">"))
 
   (let ((word (read-word-)))
     ;; try to parse word as number, if this fails, just return the word

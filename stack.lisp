@@ -9,9 +9,12 @@
   (setf (slot-value st 'stk) (append (slot-value st 'stk) (list value))))
 
 (defmethod print-stack ((st stack))
-  (format t "=> ~{~a ~}~%" (slot-value st 'stk)))
+  (format nil "~{~a ~}" (slot-value st 'stk)))
 
 (defmethod pop-stack ((st stack))
+  ;; when list is empty
+  (when (eq nil (slot-value st 'stk)) (error "Stack is empty"))
+
   (let* ((s (slot-value st 'stk))
          (l (first (last s))))
     (setf (slot-value st 'stk) (butlast s))

@@ -22,7 +22,7 @@
   (add-word-dict d "<"      (lambda () (push-stack s (> (pop-stack s) (pop-stack s)))))
   (add-word-dict d "="      (lambda () (push-stack s (= (pop-stack s) (pop-stack s)))))
   (add-word-dict d "."      (lambda () (format t "~a~%" (pop-stack s))))
-  (add-word-dict d ".S"     (lambda () (print-stack s)))
+  (add-word-dict d ".S"     (lambda () (write-line (print-stack s))))
   (add-word-dict d "0SP"    (lambda () (clear-stack s)))
   (add-word-dict d ":"      (lambda () (let* ((def (read-definition))
                                          (name (first def))
