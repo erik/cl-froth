@@ -1,22 +1,24 @@
 (in-package :cl-froth.stack)
 
 (defclass stack ()
-  ((s :initform '())))
+  ((stk :initform '())))
 
-;; TODO actually write these
+(defvar *stack* (make-instance 'stack) "Global stack.")
 
-(defmethod push-stack ((s stack) value)
-  ;; TODO
-  )
+(defmethod push-stack ((st stack) value)
+  (setf (slot-value st 'stk) (append (slot-value st 'stk) (list value))))
 
-(defmethod pop-stack ((s stack) value)
-  ;; TODO
-  )
+(defmethod print-stack ((st stack))
+  (format t "=> ~{~a ~}~%" (slot-value st 'stk)))
 
-(defmethod peek-stack ((s stack))
-  ;; TODO
-  )
+(defmethod pop-stack ((st stack))
+  (let* ((s (slot-value st 'stk))
+         (l (first (last s))))
+    (setf (slot-value st 'stk) (butlast s))
+    l))
 
-(defmethod clear-stack ((s stack) value)
-  ;; TODO
-  )
+(defmethod peek-stack ((st stack))
+  (first (last (slot-value st 'stk))))
+
+(defmethod clear-stack ((st stack))
+  (setf (slot-value st 'stk) '()))

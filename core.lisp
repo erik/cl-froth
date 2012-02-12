@@ -9,12 +9,18 @@
   "Returns true if the Lisp character CHAR is whitespace"
   (member c '(#\Space #\Tab #\Newline) :test #'char=))
 
+(defun primitivep (type)
+  "Returns true if the type given is a froth primitive value."
+  (or (numberp type)
+      ;; TODO: probable some other primitives
+      ))
+
 (defun read-word- ()
   "Helper function for read-word"
 
   ;; skip any leading whitespace
   (loop for ws = (peek-char nil *reader-source*)
-     while (whitespacep ws)
+     while (and (characterp ws) (whitespacep ws))
      do (read-char *reader-source*))
 
   (concatenate
@@ -34,11 +40,11 @@
         (parse-integer word)
       (parse-error () word))))
 
-(defun read-definition (words)
+(defun read-definition ()
   "Reads a function definition"
 
   (loop for word = (read-word)
-     until (or (null word) (string= word ";"))
+     until (or (null word) (and (stringp word) (string= word ";")))
      collect word))
 
 (defun read-delim (delim)
