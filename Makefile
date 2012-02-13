@@ -1,10 +1,10 @@
 LISP=sbcl
 
-sbcl_BUILDOPTS= --load ./make.lisp
+sbcl_BUILDOPTS= --noinform --load ./make.lisp
 clisp_BUILDOPTS=-K full -on-error exit < ./make.lisp
 
-FILES=cl-froth.asd core.lisp compile.lisp dictionary.lisp package.lisp \
-functions.lisp stack.lisp cl-froth.lisp wrappers.lisp reader.lisp
+FILES=cl-froth.asd src/core.lisp src/compile.lisp src/dictionary.lisp src/package.lisp \
+src/functions.lisp src/stack.lisp src/cl-froth.lisp src/wrappers.lisp src/reader.lisp
 
 BUILD_OPTS := --load-system cl-froth --entry cl-froth:main
 

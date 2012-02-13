@@ -1,5 +1,3 @@
-;;;; -*- Mode: Lisp; Syntax: ANSI-Common-Lisp; Base: 10 -*-
-
 (defpackage #:cl-froth-asd
   (:use :cl :asdf))
 
@@ -17,12 +15,13 @@
     ;;;
     :serial t
 
-    :components ((:file "package")
-                 (:file "core")
-                 (:file "reader")
-                 (:file "wrappers")
-                 (:file "stack")
-                 (:file "dictionary")
-                 (:file "functions")
-                 (:file "compile")
-                 (:file "cl-froth")))
+    :components ((:module src
+                          :components ((:file "package")
+                                       (:file "core")
+                                       (:file "reader")
+                                       (:file "wrappers")
+                                       (:file "stack")
+                                       (:file "dictionary")
+                                       (:file "functions")
+                                       (:file "compile")
+                                       (:file "cl-froth")))))
