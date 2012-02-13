@@ -10,14 +10,22 @@
   (:export
 
    ;; functions
-   :read-word
-   :read-string
-   :read-definition
-   :read-delim
    :primitivep
+   :whitespacep
+   :prompt
 
    ;; vars
    :*reader-source*))
+
+(defpackage :cl-froth.reader
+  (:use :common-lisp :cl-froth.core)
+  (:export
+
+   ;; functions
+   :read-word
+   :read-string
+   :read-definition
+   :read-delim))
 
 (defpackage :cl-froth.dictionary
   (:use :common-lisp)
@@ -72,7 +80,8 @@
    :cl-froth.stack
    :cl-froth.core
    :cl-froth.compile
-   :cl-froth.wrappers)
+   :cl-froth.wrappers
+   :cl-froth.reader)
 
   (:export
    :create-default-dictionary))
@@ -83,6 +92,7 @@
         :cl-froth.compile
         :cl-froth.dictionary
         :cl-froth.stack
+        :cl-froth.reader
         :cl-froth.functions
         :cl-froth.wrappers)
   (:export

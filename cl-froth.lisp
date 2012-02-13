@@ -1,9 +1,5 @@
 (in-package :cl-froth)
 
-(defun prompt (p)
-  (format *query-io* "~a " p)
-  (force-output *query-io*))
-
 (defun slurp-file (stream)
   "Efficiently read a file all at once"
   (let ((seq (make-array (file-length stream) :element-type 'character :fill-pointer t)))

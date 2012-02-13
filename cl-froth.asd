@@ -19,6 +19,7 @@
 
     :components ((:file "package")
                  (:file "core")
+                 (:file "reader")
                  (:file "wrappers")
                  (:file "stack")
                  (:file "dictionary")
